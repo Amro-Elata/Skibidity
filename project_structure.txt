@@ -1,0 +1,89 @@
+social-media-app/
+├── htdocs/                        # XAMPP public directory
+│   ├── api/                       # Backend API (PHP files)
+│   │   ├── auth/                  # Authentication-related files
+│   │   │   ├── login.php          # Login endpoint
+│   │   │   ├── register.php       # Registration endpoint
+│   │   │   └── verify_token.php   # Verify JWT token
+│   │   ├── posts/                 # Post-related endpoints
+│   │   │   ├── create_post.php    # Create a post
+│   │   │   ├── get_posts.php      # Fetch all posts
+│   │   │   └── delete_post.php    # Delete a post
+│   │   ├── chat/                  # Chat-related endpoints
+│   │   │   ├── send_message.php   # Send a message
+│   │   │   └── fetch_messages.php # Fetch chat history
+│   │   ├── config/                # Config files
+│   │   │   ├── database.php       # Database connection setup
+│   │   │   ├── env.php            # Environment variables (API keys, etc.)
+│   │   │   └── routes.php         # Centralized API routing
+│   │   ├── utils/                 # Utility functions
+│   │   │   ├── jwt.php            # JSON Web Token (JWT) functions
+│   │   │   └── response.php       # Unified JSON response helper
+│   │   ├── middleware/            # Middleware for API requests
+│   │   │   └── auth_middleware.php # Authorization logic
+│   │   └── index.php              # Main entry point for backend API
+│   └── index.php                  # Frontend landing page or default file
+│
+├── frontend/                      # Frontend directory (React)
+│   ├── public/                    # Public assets
+│   │   ├── index.html             # Main HTML file for React
+│   │   └── favicon.ico            # Website favicon
+│   ├── src/                       # Source code
+│   │   ├── components/            # React components
+│   │   │   ├── Chat.js            # Chat UI
+│   │   │   ├── Feed.js            # Feed UI
+│   │   │   ├── Profile.js         # Profile page
+│   │   │   ├── Post.js            # Individual Post component
+│   │   │   └── Auth.js            # Login/Signup
+│   │   ├── styles/                # CSS files
+│   │   │   ├── main.css           # Global styles
+│   │   │   └── theme.css          # Theme-based styles
+│   │   ├── utils/                 # Utility functions
+│   │   │   ├── api.js             # API calls to PHP backend
+│   │   │   ├── socket.js          # WebSocket client setup
+│   │   │   └── helpers.js         # Reusable JavaScript helpers
+│   │   ├── context/               # React Context for state management
+│   │   │   └── AuthContext.js     # Context for user authentication
+│   │   ├── App.js                 # Main React app file
+│   │   ├── routes.js              # Frontend routes
+│   │   └── index.js               # Entry point for React
+│   └── package.json               # Frontend dependencies
+│
+├── database/                      # Database configuration
+│   ├── schema.sql                 # MySQL schema for tables
+│   ├── seed.sql                   # Sample data for testing
+│   └── migrations/                # Optional: SQL migrations for schema changes
+│
+├── mobile/                        # Mobile app (React Native)
+│   ├── android/                   # Android-specific files
+│   ├── ios/                       # iOS-specific files
+│   ├── src/                       # Shared components
+│   │   ├── components/            # Reusable components
+│   │   │   ├── Chat.js            # Mobile Chat UI
+│   │   │   ├── Feed.js            # Mobile Feed UI
+│   │   │   └── Profile.js         # Mobile Profile UI
+│   │   ├── styles/                # Mobile-specific styles
+│   │   │   └── theme.js           # Theme-based styling (React Native)
+│   │   ├── utils/                 # Utility functions
+│   │   │   └── api.js             # API calls to PHP backend
+│   │   ├── App.js                 # Mobile app entry point
+│   │   └── index.js               # Mobile app configuration
+│   └── package.json               # Mobile dependencies
+│
+├── scripts/                       # Deployment/Build scripts
+│   ├── deploy.sh                  # Bash script for deployment
+│   └── build.sh                   # Script to build frontend and mobile
+│
+├── tests/                         # Testing suite
+│   ├── backend/                   # Backend tests
+│   │   └── auth_test.php          # Authentication test cases
+│   ├── frontend/                  # Frontend tests
+│   │   ├── App.test.js            # Main app test
+│   │   ├── Chat.test.js           # Chat UI test
+│   │   └── utils.test.js          # Utility function tests
+│   ├── mobile/                    # Mobile app tests
+│   │   └── App.test.js            # React Native tests
+│   └── README.md                  # Testing instructions
+│
+├── README.md                      # Project documentation
+└── .env                           # Environment variables (ignored by version control)
