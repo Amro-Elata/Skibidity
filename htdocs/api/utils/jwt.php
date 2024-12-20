@@ -1,20 +1,22 @@
 <?php
-use \Firebase\JWT\JWT;
+// Purpose: JSON Web Token (JWT) functions
+require_once '../config/env.php';
 
-function generateJWT($user) {
-    $key = "your_secret_key";
-    $issuedAt = time();
-    $expirationTime = $issuedAt + 3600;  // JWT valid for 1 hour from the issued time
-    $payload = array(
-        "iat" => $issuedAt,
-        "exp" => $expirationTime,
-        "user" => $user
-    );
+function createJWT($payload) {
+    $header = json_encode(["alg" => "HS256", "typ" => "JWT"]);
+    $base64Header = base64_encode($header);
+    $base64Payload = base64_encode(json_encode($payload));
+    $signature = hash_hmac("sha256", "$base64Header.$base64Payload", JWT_SECRET, true);
+    $base64Signature = base64_encode($signature);
+    return "$base64Header.$base64Payload.$base64Signature";
+}
 
-    // Specify the algorithm (e.g., HS256)
-    $algorithm = 'HS256';
-
-    // Encode the payload with the key and algorithm
-    return JWT::encode($payload, $key, $algorithm);
+function verifyJWT($token) {
+    list($header, $payload, $signature) = explode('.', $token);
+    $expectedSignature = base64_encode(hash_hmac("sha256", "$header.$payload", JWT_SECRET, true));
+    if ($signature !== $expectedSignature) {
+        throw new Exception("Invalid token");
+    }
+    return json_decode(base64_decode($payload), true);
 }
 ?>

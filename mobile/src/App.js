@@ -4,17 +4,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Feed from './components/Feed';
 import Profile from './components/Profile';
 
+// Purpose: Main entry point for the mobile app
 const Stack = createStackNavigator();
 
-function App() {
+const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Feed">
+      <Stack.Navigator>
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default App;

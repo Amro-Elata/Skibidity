@@ -1,22 +1,24 @@
 import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Auth from './components/Auth';
 import Feed from './components/Feed';
 import Profile from './components/Profile';
-import Auth from './components/Auth';
+import Chat from './components/Chat';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/" exact component={Feed} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/auth" component={Auth} />
-        </Switch>
-      </div>
-    </Router>
-  );
-}
+// Purpose: Main app entry point
+const App = () => {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Auth />} />
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/profile" element={<Profile user={{ name: 'John Doe', email: 'john@example.com', postCount: 42 }} />} />
+                <Route path="/chat" element={<Chat />} />
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;
+
+// To develop further: Add route protection and dynamic user data fetching.

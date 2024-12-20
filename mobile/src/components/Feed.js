@@ -1,28 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
-import { getPosts } from '../utils/api';
+import React from 'react';
+import { View, Text, FlatList } from 'react-native';
 
-function Feed({ navigation }) {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      const response = await getPosts();
-      setPosts(response.data);
-    }
-    fetchPosts();
-  }, []);
-
+// Purpose: Display the feed for mobile users
+const Feed = ({ posts }) => {
   return (
     <View>
-      {posts.map(post => (
-        <View key={post.id}>
-          <Text>{post.content}</Text>
-        </View>
-      ))}
-      <Button title="Go to Profile" onPress={() => navigation.navigate('Profile')} />
+      <FlatList
+        data={posts}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.content}</Text>
+          </View>
+        )}
+      />
     </View>
   );
-}
+};
 
 export default Feed;

@@ -1,20 +1,22 @@
 <?php
-include_once '../config/database.php';
-include_once '../utils/response.php';
+// Purpose: Handle creating a new post
+require_once '../config/database.php';
+require_once '../middleware/auth_middleware.php';
+require_once '../utils/response.php';
 
-header("Content-Type: application/json");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_id = authenticate_user();
+    $content = $_POST['content'] ?? '';
 
-// Check if the user is authenticated using JWT (auth_middleware.php can be used here)
-$data = json_decode(file_get_contents("php://input"));
+    if (empty($content)) {
+        send_json_response(400, 'Post content cannot be empty');
+        exit;
+    }
 
-if (empty($data->content)) {
-    echo json_encode(["message" => "Content is required"]);
-    exit;
+    $stmt = $pdo->prepare("INSERT INTO posts (user_id, content) VALUES (?, ?)");
+    $stmt->execute([$user_id, $content]);
+    send_json_response(201, 'Post created successfully');
 }
-
-// Insert post into the database
-// Simulating a successful insert
-$post_id = 123;
-
-echo json_encode(["message" => "Post created", "post_id" => $post_id]);
 ?>
+
+// To develop further: Add media upload functionality and post visibility options.

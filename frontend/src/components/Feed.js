@@ -1,26 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { getPosts } from '../utils/api';
+import React, { useEffect, useState } from 'react';
+import { fetchPosts } from '../utils/api';
 
-function Feed() {
-  const [posts, setPosts] = useState([]);
+// Purpose: Display all posts in a feed format
+const Feed = () => {
+    const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    async function fetchPosts() {
-      const response = await getPosts();
-      setPosts(response.data);
-    }
-    fetchPosts();
-  }, []);
+    useEffect(() => {
+        const loadPosts = async () => {
+            try {
+                const response = await fetchPosts();
+                setPosts(response.data);
+            } catch (error) {
+                console.error('Error loading posts:', error);
+            }
+        };
+        loadPosts();
+    }, []);
 
-  return (
-    <div className="Feed">
-      {posts.map(post => (
-        <div key={post.id} className="Post">
-          <p>{post.content}</p>
+    return (
+        <div>
+            <h1>Feed</h1>
+            {posts.map((post) => (
+                <div key={post.id}>
+                    <h3>{post.user}</h3>
+                    <p>{post.content}</p>
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
-}
+    );
+};
 
 export default Feed;
+
+// To develop further: Add pagination, like/comment functionality, and better styling.

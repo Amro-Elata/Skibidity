@@ -1,17 +1,18 @@
-const API_BASE_URL = 'http://localhost/social-media-app/api/';
+import axios from 'axios';
 
-export const getPosts = async () => {
-  const response = await fetch(`${API_BASE_URL}posts/get_posts.php`);
-  return await response.json();
+// Purpose: API client for making requests to the backend
+const apiClient = axios.create({
+  baseURL: 'http://localhost/api',
+});
+
+export const fetchPosts = async () => {
+  const response = await apiClient.get('/posts/get_posts');
+  return response.data;
 };
 
 export const createPost = async (content) => {
-  const response = await fetch(`${API_BASE_URL}posts/create_post.php`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ content }),
-  });
-  return await response.json();
+  const response = await apiClient.post('/posts/create_post', { content });
+  return response.data;
 };
+
+export default apiClient;

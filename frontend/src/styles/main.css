@@ -1,0 +1,11 @@
+/* Purpose: Global CSS styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+// To develop further: Add responsive design and light/dark theme support.
+
