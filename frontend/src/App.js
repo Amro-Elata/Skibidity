@@ -4,6 +4,8 @@ import Auth from './components/Auth';
 import Feed from './components/Feed';
 import Profile from './components/Profile';
 import Chat from './components/Chat';
+import "./styles/main.css";
+import "./styles/theme.css";
 
 // Purpose: Main app entry point
 const App = () => {

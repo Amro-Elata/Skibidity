@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { loginUser, registerUser } from '../utils/api';
+import "../styles/auth.css"
 
 // Purpose: Handle user authentication (Login/Register)
 const Auth = () => {
@@ -23,8 +24,8 @@ const Auth = () => {
     };
 
     return (
-        <div>
-            <h2>{isRegistering ? 'Register' : 'Login'}</h2>
+        <div className = "authContainer">
+            <h2 className = "Login_Register_Title" >{isRegistering ? 'Register' : 'Login'}</h2>
             <input
                 type="email"
                 value={email}

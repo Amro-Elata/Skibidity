@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Purpose: Handle API calls
-const API_BASE = 'http://localhost/api';
+const API_BASE = 'http://localhost/api/';
 
 export const loginUser = async (email, password) => {
     const response = await axios.post(`${API_BASE}/auth/login.php`, { email, password });
@@ -9,8 +9,13 @@ export const loginUser = async (email, password) => {
 };
 
 export const registerUser = async (email, password) => {
-    const response = await axios.post(`${API_BASE}/auth/register.php`, { email, password });
-    return response.data;
+    try {
+        const response = await axios.post(`${API_BASE}:3000/auth/register.php`, { email, password });
+        return response.data;
+    } catch (error) {
+        console.error('Error during registration:', error.message);
+        throw error;
+    }
 };
 
 export const fetchPosts = async () => {
