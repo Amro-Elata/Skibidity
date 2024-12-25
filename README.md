@@ -1,3 +1,16 @@
+## Useful links
+https://ui.shadcn.com/docs/installation/vite
+
+https://tailwindcss.com/docs/guides/vite
+
+https://vite.dev
+
+https://cloud.appwrite.io
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
